@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Leaderboard</title> 
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mp3-audio.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="">
+    <div class="tableContainer">
+      <% if(typeof(name) != "undefined"){ %>
+        <div class="name-score"><span><%= name %></span> <div>Score : <span id="score"><%= score  %> </span></div></div> 
+      <% } %> 
+      
+      <% if(typeof(user) != "undefined") {%>
+        <form id="playAgain" action="/player" class="hidden" method="GET">
+          <input type="text" name="name" class="" value="<%= user %> " placeholder="Enter Your Name">
+        </form>
+        <button id="play" type="button" class="btn btn-success lbButton">Play Again!</button>
+      <% }else { %>
+        <button id="back" type="button" class="btn btn-dark lbButton">Back</button>
+     <% } %> 
+      <h3 class="center">Leaderboard</h3>
+     <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i = 0; i<data.length; i++){ 
+              if(typeof(name) !=="undefined"){
+                if(name == data[i].name && score == data[i].score){
+            %>
+              <tr class="bg-success">
+                <th scope="row"><%= i+1 %></th>
+                <td><%= data[i].name %></td>
+                <td><%= data[i].score %></td>
+              </tr>
+                <% } else{ %>
+                <tr class="">
+                  <th scope="row"><%= i+1 %></th>
+                  <td><%= data[i].name %></td>
+                  <td><%= data[i].score %></td>
+              </tr>
+           <%   } 
+          } else { %>
+            <tr class="">
+                  <th scope="row"><%= i+1 %></th>
+                  <td><%= data[i].name %></td>
+                  <td><%= data[i].score %></td>
+              </tr>
+          <% } 
+        }%> 
+        </tbody>
+      </table>
+      <form id="goBack" class="hidden" action="/" method="GET">
+      </form>
+    </div>
+  </div>
+</body>
+
+<script>
+  $("#play").on('click', (e)=>{
+    $("#playAgain").submit();
+  });
+
+  $("#back").on('click', (e)=>{
+    $("#goBack").submit();
+  });
+</script>
+
+</html>

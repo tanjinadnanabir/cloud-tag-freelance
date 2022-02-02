@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Audio Player</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mp3-audio.css">
+
+  <!-- <script src="js/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script> -->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <script src='js/jquery.svg3dtagcloud.min.js'></script>
+  <script src="js/scripts.js"></script>
+</head>
+
+<body>
+
+  <br>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col col-md-6">
+        <div>
+          <div class="name-score"><span>Welcome <%= name %></span> <span style="float: right;">Score : <span id="score">0.0</span></span></div>
+          <div><progress id="progress" value="0" max="5"></progress></div>
+      </div>
+        <div class="card">
+          <div class="card-block">
+            <div id="holder"></div>
+            <div id="container" class=""></div>
+            <div id="iconHolder" class="">
+              <span id="emptyIconHolder">
+                <span><img src="./img/record-vinyl-solid.png" height="40" width="40" class="addedIcon"></span>
+                <span><img src="./img/record-vinyl-solid.png" height="40" width="40" class="addedIcon"></span>
+                <span><img src="./img/record-vinyl-solid.png" height="40" width="40" class="addedIcon"></span>
+                <span><img src="./img/record-vinyl-solid.png" height="40" width="40" class="addedIcon"></span>
+            </span>
+            </div><br>
+            <div class="">
+              <audio id="player" controls crossorigin class="mp3-auido">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <div class="player">
+              <div id="play-pause-container">
+                <div class="amplitude-play-pause amplitude-paused" id="play-pause"></div>
+              </div>
+              <div class="controls">
+                <img id="vol_image"
+                  src="https://521dimensions.com/img/open-source/amplitudejs/examples/flat-black/volume.svg"><input
+                  type="range" id="vol" class="amplitude-volume-slider" step=".1">
+                <span id="remaining">00:00</span>
+                <span class="next">
+                  <button id="nextSong" type="button" class="btn btn-secondary" disabled>Next</button>
+                  <button id="finish" type="button" class="btn btn-success hidden" disabled>Finish</button>
+                </span>
+              </div>
+            </div>
+            <div>
+              <form id="scoreForm" class="hidden" action="/leaderBoard" method="POST">
+                <input type="text" name="finalScore" id="finalScore" class="fadeIn third" placeholder="score">
+                <input type="submit" class="fadeIn third" value="submit">
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col">
+        <div class="card">
+          <div class="card-block">
+            <div class="mp3-details">
+              <a data-toggle="collapse" href="#details" aria-expanded="false" aria-controls="displayDetails">
+                <span>&#9776;</span>
+                 <i class="fa fa-list-alt" aria-hidden="true"></i> 
+              </a>
+            </div>
+            <div class="collapse-details" id="details">
+              <img src="https://www.stockvault.net/data/2016/12/22/219152/thumb16.jpg" alt="John Doe"
+                class="img-thumbnail mp3-cover">
+              <ul class="list-group">
+                <li class="list-group-item"><span></span><div>
+                  <span>Current Track :</span>
+                  <p id="currentTrack" style="float:left; color: red;">1</p>
+                </div>
+              </li>
+              <ul class="list-group">
+                <li class="list-group-item"><span></span><div>
+                  <span>Total Tracks :</span>
+                  <p style="float:left; color: blue;">5</p>
+                </div>
+              </li>
+                <li class="list-group-item"><span></span>Identify the sounds and click most suitable tags.</li>
+                <li class="list-group-item"><span></span>You have to click 4 tags for each song.</li>
+                <li class="list-group-item"><span></span>You can not click more than 4 tags.</li>
+                <li class="list-group-item"><span></span>After clicking 4 tags click next.</li>
+                <li class="list-group-item"><span></span>Best of Luck !</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+
+  <div class="modal"  data-backdrop="static" data-keyboard="false" id="popup" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Instructions</h5>
+        </div>
+        <div class="modal-body">
+
+            Identify the sounds and click most suitable tags.<br>
+            You have to click 4 tags for each song.
+            You can not click more than 4 tags.
+            After clicking 4 tags click next.<br>
+            Best of Luck !
+
+        </div>
+        <div class="modal-footer">
+          <button id="mClose" type="button" class="btn btn-warning" data-dismiss="modal">Got it!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script type="module">
+
+  import AudioMotionAnalyzer from 'https://cdn.skypack.dev/audiomotion-analyzer?min';
+
+  // callback function
+  function pulse(analyzer) {
+    const container = document.getElementById('container');
+    // use song energy to scale
+    container.height = analyzer.energy * 10;
+  }
+
+  // audio source
+  let audioEl = document.getElementById('player');
+
+  // instantiate analyzer
+  const audioMotion = new AudioMotionAnalyzer(
+    document.getElementById('container'),
+    {
+      source: audioEl,
+      height: window.innerHeight - 550,
+      mode: 3,
+      showLeds: true,
+      onCanvasDraw: pulse,
+      overlay: true,
+      showScaleX: false,
+      bgAlpha: 0.1
+    }
+  );
+
+</script>
+
+</html>
